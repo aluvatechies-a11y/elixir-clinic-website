@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIXIR Homeopathic Clinic | Natural Healing, Expert Care</title>
+    <style>
+        :root {
+            --primary-green: #1B5E5B;
+            --light-green: #2C7A6F;
+            --accent-sage: #A8C5A1;
+            --warm-cream: #F5F3ED;
+            --warm-ochre: #D4A574;
+            --deep-charcoal: #2C3E35;
+            --light-text: #555;
+            --border-light: #E8E6E1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            color: var(--deep-charcoal);
+            line-height: 1.6;
+            background: white;
+        }
+
+        /* Typography System */
+        h1, h2, h3 {
+            font-family: 'Georgia', 'Garamond', serif;
+            color: var(--primary-green);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--light-text);
+            max-width: 75ch;
+            line-height: 1.8;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--warm-cream);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-green);
+        }
+
+        .cta-nav {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cta-nav:hover {
+            background: var(--light-green);
+            color: white;
+        }
+
+        body {
+            padding-top: 60px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #F5F3ED 0%, white 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g opacity="0.08" fill="%231B5E5B"><path d="M50,20 Q60,40 50,60 Q40,40 50,20 M80,30 Q90,50 80,70 Q70,50 80,30 M120,25 Q130,45 120,65 Q110,45 120,25"/></g></svg>') no-repeat;
+            background-size: contain;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            font-size: 3rem;
+        }
+
+        .hero-tagline {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--light-text);
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-primary:hover {
+            background: var(--light-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(27, 94, 91, 0.2);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            padding: 2rem;
+            background: white;
+            border-left: 4px solid var(--warm-ochre);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .service-item h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .why-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .why-icon {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            flex-shrink: 0;
+        }
+
+        .why-item p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .why-visual {
+            background: var(--accent-sage);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-visual p {
+            color: white;
+            font-size: 1.1rem;
+            max-width: none;
+        }
+
+        /* Online Consultation Section */
+        .consultation-highlight {
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .consultation-highlight h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .consultation-highlight p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .consultation-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .consultation-features p {
+            color: rgba(255,255,255,0.95);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+
+        .contact-card a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+            max-width: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .why-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .consultation-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .cta-nav {
+                display: inline-block;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        button:focus-visible {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-logo">ELIXIR</div>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-nav">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p style="font-size: 0.95rem; color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 1rem;">Your Health, Our Priority</p>
+                <h1>Natural Healing for Modern Life</h1>
+                <p class="hero-tagline">Expert homeopathic care from the comfort of your home</p>
+                <p>ELIXIR Homeopathic Clinic brings you safe, effective, and personalized healing. Consult experienced practitioners online and discover the power of natural medicine tailored to you.</p>
+                <a href="#contact" class="cta-primary">Start Your Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Approach to Healing</h2>
+            <p>We offer comprehensive homeopathic care designed to treat the root cause, not just symptoms. Each service is personalized to your unique health needs.</p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">👤</div>
+                    <h3>Personalized Consultation</h3>
+                    <p>For all age groups — we take time to understand your complete health picture and create a tailored treatment plan just for you.</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">🌿</div>
+                    <h3>Natural & Gentle Treatment</h3>
+                    <p>No harmful side effects. Our remedies work with your body's natural healing ability to restore balance and wellness.</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Chronic & Acute Conditions</h3>
+                    <p>From long-standing issues to recent ailments, we provide long-term relief with remedies that address underlying causes.</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">💊</div>
+                    <h3>Homeopathic Medicines</h3>
+                    <p>Safe and effective remedies selected specifically for your condition, with guidance on proper usage and timing.</p>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">❤️</div>
+                    <h3>Overall Wellness</h3>
+                    <p>Body, mind, and life — we treat the whole person, not just isolated symptoms, for lasting well-being.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why">
+        <div class="container">
+            <div class="why-section">
+                <div class="why-content">
+                    <h2>Why Choose ELIXIR?</h2>
+                    <p>We're not just another clinic. We combine expert knowledge with a genuine commitment to your well-being.</p>
+                    
+                    <div class="why-list">
+                        <div class="why-item">
+                            <span class="why-icon">✓</span>
+                            <p><strong>Expert Practitioners:</strong> Years of training and experience in homeopathic medicine</p>
+                        </div>
+                        <div class="why-item">
+                            <span class="why-icon">✓</span>
+                            <p><strong>Holistic Approach:</strong> We treat causes, not just symptoms</p>
+                        </div>
+                        <div class="why-item">
+                            <span class="why-icon">✓</span>
+                            <p><strong>Safe & Natural:</strong> No side effects, no harmful chemicals</p>
+                        </div>
+                        <div class="why-item">
+                            <span class="why-icon">✓</span>
+                            <p><strong>Personalized Care:</strong> Every consultation is unique to your needs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="why-visual">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
+                    <p>Healing that honors your body's natural wisdom</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Consultation -->
+    <section id="consultation">
+        <div class="container">
+            <div class="consultation-highlight">
+                <h2>Online Consultation Available</h2>
+                <p>Get expert advice from home. Flexible scheduling, secure consultations, and convenient access to care whenever you need it.</p>
+                
+                <div class="consultation-features">
+                    <div>
+                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">💻</p>
+                        <p>Convenient</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔒</p>
+                        <p>Safe & Secure</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏰</p>
+                        <p>Flexible Timing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-section">
+                <h2>Get Started Today</h2>
+                <p>Ready to begin your journey to better health? Reach out to us and schedule your consultation.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>WhatsApp</h3>
+                        <p>📱</p>
+                        <a href="https://wa.me/918714055501">+91 87140 55501</a>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Phone</h3>
+                        <p>☎️</p>
+                        <a href="tel:+918714055501">+91 87140 55501</a>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Service</h3>
+                        <p>Online Consultation</p>
+                        <p style="color: var(--light-text); font-weight: 400;">Available 7 days a week</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 2rem; background: var(--warm-cream); border-radius: 8px;">
+                    <h3>Why wait?</h3>
+                    <p style="margin-bottom: 1.5rem;">Your first step toward natural healing is just one message away. We're here to listen and help you feel better.</p>
+                    <a href="https://wa.me/918714055501" class="cta-primary">Book Your Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>ELIXIR Homeopathic Clinic</strong></p>
+            <p>Natural Healing • Better Tomorrow</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2024 ELIXIR Homeopathic Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
