@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELIXIR Homeopathic Clinic | Natural Healing, Expert Care</title>
+    <title>ELIXIR HOMOEOPATHIC CLINIC | Natural Healing, Expert Care</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         :root {
             --primary-green: #1B5E5B;
+            --primary-dark: #12403e;
             --light-green: #2C7A6F;
             --accent-sage: #A8C5A1;
-            --warm-cream: #F5F3ED;
+            --sage-light: #EBF3E8;
+            --warm-cream: #F8F6F0;
             --warm-ochre: #D4A574;
             --deep-charcoal: #2C3E35;
-            --light-text: #555;
-            --border-light: #E8E6E1;
+            --light-text: #5A6560;
+            --border-light: #E2E0D8;
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 16px 32px rgba(27, 94, 91, 0.14);
+            --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -27,46 +33,47 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: var(--deep-charcoal);
             line-height: 1.6;
-            background: white;
+            background: #FAFAF8;
+            padding-top: 76px;
+            overflow-x: hidden;
         }
 
-        /* Typography System */
-        h1, h2, h3 {
+        /* Typography */
+        h1, h2, h3, h4 {
             font-family: 'Georgia', 'Garamond', serif;
             color: var(--primary-green);
-            line-height: 1.2;
-            margin-bottom: 1rem;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 2.85rem;
             font-weight: 700;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.02rem;
             color: var(--light-text);
             max-width: 75ch;
             line-height: 1.8;
         }
 
-        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -74,23 +81,98 @@
         }
 
         section {
-            padding: 5rem 0;
+            padding: 5.5rem 0;
+            position: relative;
         }
 
         section:nth-child(even) {
             background: var(--warm-cream);
         }
 
-        /* Navigation */
+        /* ANIMATIONS & KEYFRAMES */
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1deg); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(27, 94, 91, 0.45); }
+            70% { box-shadow: 0 0 0 14px rgba(27, 94, 91, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(27, 94, 91, 0); }
+        }
+
+        @keyframes pulseChat {
+            0% { transform: scale(1); box-shadow: 0 4px 18px rgba(27, 94, 91, 0.35); }
+            50% { transform: scale(1.06); box-shadow: 0 8px 26px rgba(27, 94, 91, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 4px 18px rgba(27, 94, 91, 0.35); }
+        }
+
+        @keyframes shimmerGradient {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.92); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: white;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-light);
             z-index: 1000;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 0.75rem 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            padding: 0.55rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         nav .container {
@@ -99,17 +181,37 @@
             align-items: center;
         }
 
-        .nav-logo {
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-brand:hover .nav-logo-img {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .nav-brand-text {
             font-family: 'Georgia', serif;
-            font-size: 1.5rem;
+            font-size: 1.18rem;
             font-weight: 700;
             color: var(--primary-green);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.6rem;
             align-items: center;
         }
 
@@ -117,195 +219,477 @@
             text-decoration: none;
             color: var(--light-text);
             font-size: 0.95rem;
-            transition: color 0.2s;
+            font-weight: 500;
+            transition: color 0.25s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.25s ease;
         }
 
         nav a:hover {
             color: var(--primary-green);
         }
 
+        nav a:hover::after {
+            width: 100%;
+        }
+
         .cta-nav {
             background: var(--primary-green);
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
+            color: white !important;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-size: 0.92rem;
             font-weight: 600;
+            transition: var(--transition-smooth);
+            box-shadow: 0 3px 10px rgba(27, 94, 91, 0.2);
+        }
+
+        .cta-nav::after {
+            display: none !important;
         }
 
         .cta-nav:hover {
             background: var(--light-green);
-            color: white;
-        }
-
-        body {
-            padding-top: 60px;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(27, 94, 91, 0.3);
         }
 
         /* Hero Section */
         .hero {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #F5F3ED 0%, white 100%);
+            padding: 5.5rem 0 6rem 0;
+            background: radial-gradient(circle at top right, #F0F6F1 0%, #FAF9F5 45%, #FFFFFF 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .hero-floating-leaf-1, .hero-floating-leaf-2 {
             position: absolute;
-            top: -40%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g opacity="0.08" fill="%231B5E5B"><path d="M50,20 Q60,40 50,60 Q40,40 50,20 M80,30 Q90,50 80,70 Q70,50 80,30 M120,25 Q130,45 120,65 Q110,45 120,25"/></g></svg>') no-repeat;
-            background-size: contain;
+            font-size: 3rem;
+            opacity: 0.12;
+            pointer-events: none;
+            animation: floatLogo 8s infinite ease-in-out;
         }
+        .hero-floating-leaf-1 { top: 15%; right: 8%; animation-delay: 0s; }
+        .hero-floating-leaf-2 { bottom: 12%; left: 4%; animation-delay: 3s; font-size: 2.2rem; }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 720px;
         }
 
-        .hero h1 {
-            margin-bottom: 1.5rem;
-            font-size: 3rem;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            background: rgba(168, 197, 161, 0.25);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid rgba(168, 197, 161, 0.5);
+        }
+
+        /* Hero Main Heading with Logo on Left */
+        .hero-heading-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1.35rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-logo-img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+            filter: drop-shadow(0 6px 16px rgba(27, 94, 91, 0.18));
+            animation: floatLogo 5s infinite ease-in-out;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .hero-logo-img:hover {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .hero-main-title {
+            font-size: 2.85rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--primary-green);
+            line-height: 1.15;
+            margin-bottom: 0;
+            text-transform: uppercase;
         }
 
         .hero-tagline {
             font-family: 'Georgia', serif;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 2rem;
+            font-size: 1.35rem;
+            color: var(--light-green);
+            margin-bottom: 1.4rem;
             font-style: italic;
-            font-weight: 300;
+            font-weight: 400;
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+        .hero-description {
+            font-size: 1.08rem;
+            margin-bottom: 2.2rem;
             color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         .cta-primary {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             background: var(--primary-green);
             color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 4px;
+            padding: 0.95rem 2rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(27, 94, 91, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-primary:hover {
             background: var(--light-green);
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(27, 94, 91, 0.2);
+            box-shadow: 0 8px 24px rgba(27, 94, 91, 0.35);
+            color: white;
         }
 
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-item {
-            padding: 2rem;
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             background: white;
-            border-left: 4px solid var(--warm-ochre);
-            transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--primary-green);
+            padding: 0.95rem 1.85rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            border: 1.5px solid var(--primary-green);
         }
 
-        .service-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        .cta-secondary:hover {
+            background: var(--warm-cream);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1;
+        /* Stats Bar */
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(27, 94, 91, 0.12);
         }
 
-        .service-item h3 {
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
+        .stat-item h4 {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 0.2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
         }
 
-        .service-item p {
+        .stat-item p {
+            font-size: 0.88rem;
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        /* SECTION HEADER COMPONENT */
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--warm-ochre);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* TABS COMPONENT FOR TREATMENTS */
+        .tabs-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1.5px solid var(--border-light);
+            color: var(--deep-charcoal);
+            padding: 0.75rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(27, 94, 91, 0.1);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            box-shadow: 0 6px 18px rgba(27, 94, 91, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .tab-content-panel {
+            display: none;
+            animation: fadeIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .tab-content-panel.active {
+            display: block;
+        }
+
+        /* Treatment Cards Grid */
+        .treatment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+
+        .treatment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.2rem 1.8rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+            border-top: 4px solid var(--primary-green);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--hover-shadow);
+            border-top-color: var(--warm-ochre);
+        }
+
+        .treatment-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.1rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .treatment-card:hover .treatment-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .treatment-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+            margin-bottom: 0.6rem;
+        }
+
+        .treatment-card p {
             font-size: 0.95rem;
             color: var(--light-text);
+            margin-bottom: 1.25rem;
+            line-height: 1.65;
         }
 
-        /* Why Choose Us */
+        .symptom-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .symptom-tag {
+            background: var(--warm-cream);
+            color: var(--primary-green);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 12px;
+            border: 1px solid rgba(27, 94, 91, 0.1);
+        }
+
+        .card-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--primary-green);
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+            transition: color 0.2s, padding 0.2s;
+        }
+
+        .card-action-btn:hover {
+            color: var(--light-green);
+            padding-left: 4px;
+        }
+
+        /* Why Choose Us Section */
         .why-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4.5rem;
             align-items: center;
         }
 
         .why-content h2 {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .why-list {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 1.4rem;
+            margin: 2.2rem 0;
         }
 
         .why-item {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
+            align-items: flex-start;
         }
 
         .why-icon {
-            font-size: 1.5rem;
-            color: var(--primary-green);
+            font-size: 1.1rem;
+            background: var(--primary-green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(27, 94, 91, 0.25);
+            transition: transform 0.3s;
+        }
+
+        .why-item:hover .why-icon {
+            transform: scale(1.15) rotate(10deg);
+            background: var(--light-green);
+        }
+
+        .why-item strong {
+            color: var(--primary-green);
+            font-size: 1.05rem;
         }
 
         .why-item p {
-            margin: 0;
+            margin-top: 0.2rem;
             font-size: 0.95rem;
         }
 
-        .why-visual {
-            background: var(--accent-sage);
-            border-radius: 8px;
-            padding: 3rem 2rem;
+        .why-visual-card {
+            background: linear-gradient(145deg, #1B5E5B 0%, #164846 100%);
+            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
             text-align: center;
             color: white;
-            min-height: 300px;
+            min-height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 16px 36px rgba(27, 94, 91, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
-        .why-visual p {
-            color: white;
-            font-size: 1.1rem;
-            max-width: none;
+        .why-visual-logo {
+            height: 96px;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
+            animation: floatLogo 6s infinite ease-in-out;
         }
 
-        /* Online Consultation Section */
+        .why-visual-card p {
+            color: rgba(255,255,255,0.92);
+            font-size: 1.2rem;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            max-width: 320px;
+            line-height: 1.7;
+        }
+
+        .doctor-badge {
+            margin-top: 1.75rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(5px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        /* Online Consultation */
         .consultation-highlight {
-            background: var(--primary-green);
+            background: linear-gradient(135deg, var(--primary-green) 0%, #0F3836 100%);
             color: white;
             text-align: center;
-            padding: 4rem 2rem;
-            border-radius: 8px;
-            margin: 3rem 0;
+            padding: 4.5rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(27, 94, 91, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
         .consultation-highlight h2 {
@@ -314,122 +698,787 @@
         }
 
         .consultation-highlight p {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.92);
             font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            max-width: 660px;
+            margin: 0 auto 2.5rem auto;
         }
 
         .consultation-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1.75rem;
             text-align: center;
+        }
+
+        .consultation-feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.75rem 1.2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .consultation-feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .consultation-feature-card .feat-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.75rem;
+            animation: bounceIcon 3s infinite ease-in-out;
         }
 
         .consultation-features p {
             color: rgba(255,255,255,0.95);
-            font-size: 0.95rem;
+            font-size: 1.02rem;
+            font-weight: 600;
             margin: 0;
         }
 
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
+        /* FAQ Accordion Tabs */
+        .faq-accordion {
+            max-width: 820px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .contact-section h2 {
-            margin-bottom: 3rem;
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
         }
 
-        .contact-info {
+        .faq-item:hover {
+            border-color: var(--primary-green);
+        }
+
+        .faq-question {
+            padding: 1.35rem 1.6rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary-green);
+            background: white;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: var(--warm-cream);
+        }
+
+        .faq-arrow {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.4s ease;
+            padding: 0 1.6rem;
+            background: #FCFCFA;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding: 1.25rem 1.6rem;
+            border-top-color: var(--border-light);
+        }
+
+        /* Clinic Location Banner */
+        .clinic-location-banner {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 1.2fr 0.8fr;
+            text-align: left;
+        }
+
+        .location-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-info h3 {
+            font-size: 1.65rem;
+            color: var(--primary-green);
+            margin-bottom: 0.85rem;
+        }
+
+        .location-address {
+            font-size: 1.08rem;
+            line-height: 1.8;
+            color: var(--deep-charcoal);
+            margin-bottom: 1.8rem;
+        }
+
+        .location-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .location-map-visual {
+            background: linear-gradient(135deg, #F3F1EA 0%, #E9E6DC 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-left: 1px solid var(--border-light);
+        }
+
+        .map-icon-large {
+            font-size: 3.8rem;
+            margin-bottom: 1.1rem;
+            animation: bounceIcon 2.5s infinite ease-in-out;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
             margin: 3rem 0;
+            text-align: left;
         }
 
         .contact-card {
-            padding: 2rem;
+            padding: 2.2rem 1.8rem;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             border: 1px solid var(--border-light);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--accent-sage);
+        }
+
+        .contact-card-top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover .contact-icon-box {
+            transform: scale(1.12);
+        }
+
+        .icon-wa { background: #E8F8F0; color: #25D366; }
+        .icon-phone { background: #EAF4F3; color: var(--primary-green); }
+        .icon-mail { background: #FDEEEE; color: #EA4335; }
+        .icon-insta { background: #FDF0F5; color: #E1306C; }
+        .icon-maps { background: #EBF3FD; color: #1A73E8; }
+        .icon-time { background: #FEF6EB; color: #D4A574; }
 
         .contact-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.2rem;
+            font-size: 1.18rem;
+            color: var(--primary-green);
         }
 
-        .contact-card p {
-            margin: 0.5rem 0;
-            font-size: 1.05rem;
-            color: var(--primary-green);
-            font-weight: 500;
+        .contact-card .sub-label {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin: 0;
         }
 
-        .contact-card a {
-            color: var(--primary-green);
+        .contact-value {
+            margin: 0.6rem 0 1.25rem 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--deep-charcoal);
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
             text-decoration: none;
+            font-size: 0.92rem;
             font-weight: 600;
+            transition: var(--transition-smooth);
+            text-align: center;
+            border: 1px solid transparent;
         }
 
-        .contact-card a:hover {
-            text-decoration: underline;
+        .btn-wa { background: #25D366; color: white; }
+        .btn-wa:hover { background: #20BA5A; color: white; transform: translateY(-2px); }
+
+        .btn-phone { background: var(--primary-green); color: white; }
+        .btn-phone:hover { background: var(--light-green); color: white; transform: translateY(-2px); }
+
+        .btn-mail { background: #EA4335; color: white; }
+        .btn-mail:hover { background: #D93025; color: white; transform: translateY(-2px); }
+
+        .btn-insta { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); color: white; }
+        .btn-insta:hover { opacity: 0.92; color: white; transform: translateY(-2px); }
+
+        .btn-maps { background: #1A73E8; color: white; }
+        .btn-maps:hover { background: #1557B0; color: white; transform: translateY(-2px); }
+
+        /* Appointment CTA Box */
+        .appointment-box {
+            margin-top: 3.5rem;
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, #FFFFFF 100%);
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .appointment-box h3 {
+            font-size: 1.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .appointment-box p {
+            margin: 0 auto 1.8rem auto;
+            max-width: 620px;
         }
 
         /* Footer */
         footer {
             background: var(--primary-green);
             color: white;
-            text-align: center;
-            padding: 2rem;
+            padding: 4rem 0 2rem 0;
         }
 
-        footer p {
-            color: rgba(255,255,255,0.9);
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 3.5rem;
+            margin-bottom: 2.8rem;
+            text-align: left;
+        }
+
+        .footer-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-logo {
+            height: 48px;
+            width: auto;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+
+        .footer-brand-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-sage);
+            font-size: 1.05rem;
+            margin-bottom: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.6rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.75);
+            margin: 0 auto;
+            font-size: 0.88rem;
+        }
+
+        /* SVG Icons Inline */
+        .svg-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* ========================================================
+           HELP DESK CHATBOT WIDGET STYLES
+           ======================================================== */
+        .chatbot-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Floating Launcher Button */
+        .chatbot-launcher {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            box-shadow: 0 6px 22px rgba(27, 94, 91, 0.4);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: white;
+        }
+
+        .chatbot-launcher:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 28px rgba(27, 94, 91, 0.55);
+        }
+
+        .chatbot-launcher-icon {
+            font-size: 1.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-launcher.active .chatbot-launcher-icon {
+            transform: rotate(90deg);
+        }
+
+        /* Notification Badge */
+        .chatbot-badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #E1306C;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        /* Greeting Speech Bubble / Teaser */
+        .chatbot-teaser {
+            position: absolute;
+            bottom: 74px;
+            right: 0;
+            background: white;
+            color: var(--deep-charcoal);
+            padding: 0.85rem 1.25rem;
+            border-radius: 14px;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--border-light);
+            width: 240px;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            cursor: pointer;
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .chatbot-teaser strong {
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .chatbot-teaser-close {
+            position: absolute;
+            top: 4px;
+            right: 6px;
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        /* Chatbot Modal Box */
+        .chatbot-box {
+            position: absolute;
+            bottom: 78px;
+            right: 0;
+            width: 380px;
+            max-width: calc(100vw - 32px);
+            height: 540px;
+            max-height: calc(100vh - 120px);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+            border: 1px solid var(--border-light);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chatbot-box.open {
+            display: flex;
+        }
+
+        /* Chat Header */
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #154e4a 100%);
+            color: white;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-header-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .chatbot-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .chatbot-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: white;
             margin: 0;
-            max-width: none;
+            line-height: 1.2;
+        }
+
+        .chatbot-status {
+            font-size: 0.75rem;
+            color: var(--accent-sage);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #25D366;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chatbot-close-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .chatbot-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Chat Body & Messages */
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            background: #F9F9F7;
+        }
+
+        .chat-bubble {
+            max-width: 82%;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .chat-bubble.bot {
+            background: white;
+            color: var(--deep-charcoal);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .chat-bubble.user {
+            background: var(--primary-green);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+            box-shadow: 0 2px 8px rgba(27, 94, 91, 0.2);
+        }
+
+        .chat-time {
+            font-size: 0.68rem;
+            opacity: 0.6;
+            margin-top: 0.3rem;
+            display: block;
+            text-align: right;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            border-bottom-left-radius: 3px;
+            align-self: flex-start;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: var(--light-green);
+            border-radius: 50%;
+            animation: typingDot 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Quick Action Chips */
+        .chatbot-quick-actions {
+            padding: 0.6rem 0.85rem;
+            background: white;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .chatbot-quick-actions::-webkit-scrollbar {
+            height: 4px;
+        }
+        .chatbot-quick-actions::-webkit-scrollbar-thumb {
+            background: #D8D6CE;
+            border-radius: 4px;
+        }
+
+        .quick-chip {
+            background: var(--warm-cream);
+            border: 1px solid var(--border-light);
+            color: var(--primary-green);
+            padding: 0.4rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .quick-chip:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        /* Chat Input Form */
+        .chatbot-input-area {
+            padding: 0.8rem 1rem;
+            background: white;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 0.65rem 0.95rem;
+            border: 1.5px solid var(--border-light);
+            border-radius: 24px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .chatbot-send-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .chatbot-send-btn:hover {
+            background: var(--light-green);
+            transform: scale(1.05);
+        }
+
+        /* In-chat buttons */
+        .chat-action-btn-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 0.65rem;
+        }
+
+        .chat-btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.55rem 0.85rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: white !important;
+            transition: opacity 0.2s;
+        }
+
+        .chat-btn-link:hover {
+            opacity: 0.9;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+        @media (max-width: 900px) {
+            .clinic-location-banner {
+                grid-template-columns: 1fr;
             }
-
-            h2 {
-                font-size: 1.8rem;
+            .location-map-visual {
+                border-left: none;
+                border-top: 1px solid var(--border-light);
             }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            section {
-                padding: 3rem 0;
-            }
-
-            .hero {
-                padding: 4rem 0;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-
             .why-section {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 2.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 68px;
             }
 
-            .consultation-features {
-                grid-template-columns: repeat(2, 1fr);
+            .nav-brand-text {
+                font-size: 0.95rem;
+            }
+
+            .nav-logo-img {
+                height: 38px;
             }
 
             nav ul {
@@ -438,6 +1487,49 @@
 
             .cta-nav {
                 display: inline-block;
+            }
+
+            .hero {
+                padding: 3.5rem 0;
+            }
+
+            .hero-heading-wrapper {
+                gap: 0.85rem;
+            }
+
+            .hero-logo-img {
+                height: 60px;
+            }
+
+            .hero-main-title {
+                font-size: 1.85rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.15rem;
+            }
+
+            h2 {
+                font-size: 1.85rem;
+            }
+
+            .consultation-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            section {
+                padding: 3.5rem 0;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .chatbot-box {
+                width: calc(100vw - 32px);
+                right: 0;
+                height: 480px;
             }
         }
 
@@ -448,27 +1540,23 @@
                 transition: none !important;
             }
         }
-
-        a:focus-visible {
-            outline: 2px solid var(--primary-green);
-            outline-offset: 2px;
-        }
-
-        button:focus-visible {
-            outline: 2px solid var(--primary-green);
-            outline-offset: 2px;
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
         <div class="container">
-            <div class="nav-logo">ELIXIR</div>
+            <a href="#" class="nav-brand">
+                <img src="logo.png" alt="ELIXIR Logo" class="nav-logo-img">
+                <span class="nav-brand-text">ELIXIR HOMOEOPATHIC CLINIC</span>
+            </a>
             <ul>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#services">Treatments</a></li>
                 <li><a href="#why">Why Us</a></li>
                 <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#location">Location</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#contact" class="cta-nav">Book Now</a></li>
             </ul>
@@ -477,52 +1565,323 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <span class="hero-floating-leaf-1">🌿</span>
+        <span class="hero-floating-leaf-2">🌱</span>
         <div class="container">
-            <div class="hero-content">
-                <p style="font-size: 0.95rem; color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 1rem;">Your Health, Our Priority</p>
-                <h1>Natural Healing for Modern Life</h1>
-                <p class="hero-tagline">Expert homeopathic care from the comfort of your home</p>
-                <p>ELIXIR Homeopathic Clinic brings you safe, effective, and personalized healing. Consult experienced practitioners online and discover the power of natural medicine tailored to you.</p>
-                <a href="#contact" class="cta-primary">Start Your Consultation</a>
+            <div class="hero-content reveal-on-scroll">
+                <div class="hero-eyebrow">
+                    <span>✨</span> Your Health, Our Sacred Priority
+                </div>
+                
+                <!-- Main Heading with Logo on Left -->
+                <div class="hero-heading-wrapper">
+                    <img src="logo.png" alt="ELIXIR Logo" class="hero-logo-img" title="ELIXIR Homoeopathic Clinic">
+                    <h1 class="hero-main-title">ELIXIR HOMOEOPATHIC CLINIC</h1>
+                </div>
+
+                <p class="hero-tagline">Natural Healing for Modern Life • Expert Care</p>
+                <p class="hero-description">Experience gentle, side-effect-free, and permanent recovery. Under the expert care of Dr. Megha M.G., we treat the root cause of acute and chronic health concerns using individualized homoeopathic constitutional remedies.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-primary">
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Book Consultation
+                    </a>
+                    <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Get Directions
+                    </a>
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Natural & Safe</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>7 Days</h4>
+                        <p>Weekly Consultations</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Global</h4>
+                        <p>Online Patient Reach</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Treatments with Categorized Sub-divided Tabs -->
     <section id="services">
         <div class="container">
-            <h2>Our Approach to Healing</h2>
-            <p>We offer comprehensive homeopathic care designed to treat the root cause, not just symptoms. Each service is personalized to your unique health needs.</p>
-            
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-icon">👤</div>
-                    <h3>Personalized Consultation</h3>
-                    <p>For all age groups — we take time to understand your complete health picture and create a tailored treatment plan just for you.</p>
+            <div class="section-header reveal-on-scroll">
+                <span class="section-subtitle">Individualized Healthcare</span>
+                <h2>Specialized Treatment Areas</h2>
+                <p>Select a category below to explore specific conditions treated at ELIXIR Homoeopathic Clinic with personalized, natural healing protocols.</p>
+            </div>
+
+            <!-- Subdivided Tabs -->
+            <div class="tabs-nav-container reveal-on-scroll">
+                <button class="tab-btn active" onclick="switchTreatmentTab('all', this)">
+                    <span>⭐</span> All Treatments
+                </button>
+                <button class="tab-btn" onclick="switchTreatmentTab('chronic', this)">
+                    <span>🛡️</span> Chronic Diseases
+                </button>
+                <button class="tab-btn" onclick="switchTreatmentTab('women-child', this)">
+                    <span>🌸</span> Women & Child Care
+                </button>
+                <button class="tab-btn" onclick="switchTreatmentTab('skin-hair', this)">
+                    <span>✨</span> Skin & Hair
+                </button>
+                <button class="tab-btn" onclick="switchTreatmentTab('lifestyle', this)">
+                    <span>🧠</span> Mind & Lifestyle
+                </button>
+            </div>
+
+            <!-- Tab Panel 1: All Treatments -->
+            <div id="tab-all" class="tab-content-panel active">
+                <div class="treatment-grid">
+                    <!-- Chronic -->
+                    <div class="treatment-card reveal-on-scroll">
+                        <div>
+                            <span class="treatment-icon">🫁</span>
+                            <h3>Respiratory & Allergy</h3>
+                            <p>Long-term relief from recurrent colds, allergic rhinitis, sinusitis, and bronchial asthma by strengthening lung immunity.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">Asthma</span>
+                                <span class="symptom-tag">Sinusitis</span>
+                                <span class="symptom-tag">Bronchitis</span>
+                                <span class="symptom-tag">Allergies</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Respiratory%20%26%20Allergy%20treatment" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
+
+                    <!-- Women & Child -->
+                    <div class="treatment-card reveal-on-scroll reveal-delay-1">
+                        <div>
+                            <span class="treatment-icon">🌸</span>
+                            <h3>Women's Health & Hormones</h3>
+                            <p>Safe and natural correction of menstrual irregularities, PCOD/PCOS, uterine fibroids, thyroid dysfunction, and menopause.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">PCOD/PCOS</span>
+                                <span class="symptom-tag">Thyroid</span>
+                                <span class="symptom-tag">Irregular Periods</span>
+                                <span class="symptom-tag">Menopause</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Women%27s%20Health%20and%20PCOD" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
+
+                    <!-- Skin & Hair -->
+                    <div class="treatment-card reveal-on-scroll reveal-delay-2">
+                        <div>
+                            <span class="treatment-icon">✨</span>
+                            <h3>Skin & Dermatological Care</h3>
+                            <p>Treating skin ailments from within without steroids. Proven relief for eczema, psoriasis, acne, urticaria, and pigmentation.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">Eczema</span>
+                                <span class="symptom-tag">Psoriasis</span>
+                                <span class="symptom-tag">Acne / Pimples</span>
+                                <span class="symptom-tag">Urticaria</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Skin%20Conditions" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
+
+                    <!-- Hair Care -->
+                    <div class="treatment-card reveal-on-scroll">
+                        <div>
+                            <span class="treatment-icon">💇</span>
+                            <h3>Hair & Scalp Solutions</h3>
+                            <p>Holistic remedies for excessive hair fall, alopecia areata, chronic dandruff, and premature thinning with proven nutritional care.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">Hair Fall</span>
+                                <span class="symptom-tag">Alopecia</span>
+                                <span class="symptom-tag">Dandruff</span>
+                                <span class="symptom-tag">Thinning</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Hair%20Fall%20%26%20Alopecia" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
+
+                    <!-- Digestive -->
+                    <div class="treatment-card reveal-on-scroll reveal-delay-1">
+                        <div>
+                            <span class="treatment-icon">🥣</span>
+                            <h3>Gastrointestinal Health</h3>
+                            <p>Permanent relief from chronic acidity, GERD, IBS, constipation, piles, gastritis, and digestive imbalances.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">Acidity / GERD</span>
+                                <span class="symptom-tag">IBS</span>
+                                <span class="symptom-tag">Constipation</span>
+                                <span class="symptom-tag">Piles / Fissures</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Digestive%20Health" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
+
+                    <!-- Pediatrics -->
+                    <div class="treatment-card reveal-on-scroll reveal-delay-2">
+                        <div>
+                            <span class="treatment-icon">👶</span>
+                            <h3>Pediatric & Child Health</h3>
+                            <p>Sweet, safe pills loved by children. Treats recurrent tonsillitis, low immunity, bedwetting, dentition troubles, and appetite loss.</p>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag">Tonsillitis</span>
+                                <span class="symptom-tag">Immunity Boost</span>
+                                <span class="symptom-tag">Adenoids</span>
+                                <span class="symptom-tag">Teething</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20consult%20regarding%20Pediatric%20Care" target="_blank" class="card-action-btn">
+                            Consult for this <span>→</span>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-icon">🌿</div>
-                    <h3>Natural & Gentle Treatment</h3>
-                    <p>No harmful side effects. Our remedies work with your body's natural healing ability to restore balance and wellness.</p>
+            </div>
+
+            <!-- Tab Panel 2: Chronic Diseases -->
+            <div id="tab-chronic" class="tab-content-panel">
+                <div class="treatment-grid">
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🦴</span>
+                            <h3>Arthritis & Joint Disorders</h3>
+                            <p>Natural anti-inflammatory treatment for osteoarthritis, rheumatoid arthritis, cervical spondylosis, and gout.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Joint Pain</span><span class="symptom-tag">Spondylosis</span><span class="symptom-tag">Uric Acid / Gout</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Joint%20Pain" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🧠</span>
+                            <h3>Migraine & Headaches</h3>
+                            <p>Root-cause constitutional remedies to permanently reduce frequency and severity of vascular migraines and tension headaches.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Chronic Migraine</span><span class="symptom-tag">Sinus Headache</span><span class="symptom-tag">Cluster Headache</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Migraine" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🫁</span>
+                            <h3>Asthma & Chronic Sinusitis</h3>
+                            <p>Gentle homeopathic desensitization that lowers allergic hyper-reactivity without lifelong reliance on inhalers.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Wheezing</span><span class="symptom-tag">Nasal Polyps</span><span class="symptom-tag">Chronic Cough</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Asthma" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-icon">🛡️</div>
-                    <h3>Chronic & Acute Conditions</h3>
-                    <p>From long-standing issues to recent ailments, we provide long-term relief with remedies that address underlying causes.</p>
+            </div>
+
+            <!-- Tab Panel 3: Women & Child Care -->
+            <div id="tab-women-child" class="tab-content-panel">
+                <div class="treatment-grid">
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🌸</span>
+                            <h3>PCOD / PCOS & Fibroids</h3>
+                            <p>Restores hormonal balance naturally, promotes regular ovulation, and manages cysts without surgical intervention.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">PCOD</span><span class="symptom-tag">Weight Gain</span><span class="symptom-tag">Acne / Facial Hair</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20PCOD" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">👶</span>
+                            <h3>Recurrent Childhood Illnesses</h3>
+                            <p>Builds lifelong immunity in toddlers and children without harsh antibiotics. Safe, palatable, and zero side-effects.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Frequent Colds</span><span class="symptom-tag">Tonsillitis</span><span class="symptom-tag">Digestive Colic</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Child%20Health" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🦋</span>
+                            <h3>Thyroid Imbalance</h3>
+                            <p>Constitutional remedies to gently stimulate natural thyroid hormone regulation for hypothyroidism and Hashimoto's.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Hypothyroidism</span><span class="symptom-tag">Fatigue</span><span class="symptom-tag">Metabolism</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Thyroid" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-icon">💊</div>
-                    <h3>Homeopathic Medicines</h3>
-                    <p>Safe and effective remedies selected specifically for your condition, with guidance on proper usage and timing.</p>
+            </div>
+
+            <!-- Tab Panel 4: Skin & Hair -->
+            <div id="tab-skin-hair" class="tab-content-panel">
+                <div class="treatment-grid">
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🌿</span>
+                            <h3>Psoriasis & Chronic Eczema</h3>
+                            <p>Targets the autoimmune trigger behind skin scaling, intense itching, and redness, offering prolonged remissions.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Psoriasis</span><span class="symptom-tag">Eczema</span><span class="symptom-tag">Dry Skin Cracks</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Psoriasis%20or%20Eczema" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">💇‍♀️</span>
+                            <h3>Alopecia Areata & Severe Hair Fall</h3>
+                            <p>Revives dormant hair follicles, balances scalp sebum, and restores hair volume naturally.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Patchy Loss</span><span class="symptom-tag">Hair Regrowth</span><span class="symptom-tag">Scalp Health</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Hair%20Loss" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">✨</span>
+                            <h3>Stubborn Acne & Pigmentation</h3>
+                            <p>Eliminates toxins, clears chronic cystic acne, and reduces melasma or dark spots from deep within.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Hormonal Acne</span><span class="symptom-tag">Melasma</span><span class="symptom-tag">Blemishes</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Acne%20Care" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
                 </div>
-                
-                <div class="service-item">
-                    <div class="service-icon">❤️</div>
-                    <h3>Overall Wellness</h3>
-                    <p>Body, mind, and life — we treat the whole person, not just isolated symptoms, for lasting well-being.</p>
+            </div>
+
+            <!-- Tab Panel 5: Mind & Lifestyle -->
+            <div id="tab-lifestyle" class="tab-content-panel">
+                <div class="treatment-grid">
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🧘</span>
+                            <h3>Stress, Anxiety & Panic</h3>
+                            <p>Non-addictive, gentle remedies that soothe the nervous system, reduce panic sensations, and bring emotional equilibrium.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Anxiety</span><span class="symptom-tag">Panic Attacks</span><span class="symptom-tag">Work Stress</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Anxiety%20%26%20Stress" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">🌙</span>
+                            <h3>Insomnia & Sleep Disturbances</h3>
+                            <p>Restores natural circadian rhythm and sleep quality without drowsiness or dependency on sleeping pills.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Sleeplessness</span><span class="symptom-tag">Restlessness</span><span class="symptom-tag">Fatigue</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Insomnia" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
+                    <div class="treatment-card">
+                        <div>
+                            <span class="treatment-icon">⚡</span>
+                            <h3>Chronic Fatigue & Immunity Deficit</h3>
+                            <p>Replenishes cellular vitality, boosts metabolic stamina, and promotes overall mental clarity.</p>
+                            <div class="symptom-tags"><span class="symptom-tag">Exhaustion</span><span class="symptom-tag">Brain Fog</span><span class="symptom-tag">Low Energy</span></div>
+                        </div>
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20want%20to%20consult%20for%20Fatigue" class="card-action-btn">Consult for this <span>→</span></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -532,58 +1891,190 @@
     <section id="why">
         <div class="container">
             <div class="why-section">
-                <div class="why-content">
-                    <h2>Why Choose ELIXIR?</h2>
-                    <p>We're not just another clinic. We combine expert knowledge with a genuine commitment to your well-being.</p>
+                <div class="why-content reveal-on-scroll">
+                    <span class="section-subtitle">Why ELIXIR Makes A Difference</span>
+                    <h2>Healing Rooted in True Science & Compassion</h2>
+                    <p>We do not practice one-size-fits-all treatments. At ELIXIR HOMOEOPATHIC CLINIC, every individual receives dedicated time, detailed case listening, and customized therapeutic care.</p>
                     
                     <div class="why-list">
                         <div class="why-item">
                             <span class="why-icon">✓</span>
-                            <p><strong>Expert Practitioners:</strong> Years of training and experience in homeopathic medicine</p>
+                            <div>
+                                <strong>Physician-Led Expert Care:</strong>
+                                <p>Led by Dr. Megha M.G., combining classic Hahnemannian homoeopathic principles with modern clinical insights.</p>
+                            </div>
                         </div>
                         <div class="why-item">
                             <span class="why-icon">✓</span>
-                            <p><strong>Holistic Approach:</strong> We treat causes, not just symptoms</p>
+                            <div>
+                                <strong>Root Cause Resolution:</strong>
+                                <p>We don't merely suppress symptoms with short-term fixes; our remedies stimulate self-healing for long-term health.</p>
+                            </div>
                         </div>
                         <div class="why-item">
                             <span class="why-icon">✓</span>
-                            <p><strong>Safe & Natural:</strong> No side effects, no harmful chemicals</p>
+                            <div>
+                                <strong>Zero Adverse Side Effects:</strong>
+                                <p>Non-toxic, safe for infants, pregnant mothers, and elderly patients without any organ toxicity.</p>
+                            </div>
                         </div>
                         <div class="why-item">
                             <span class="why-icon">✓</span>
-                            <p><strong>Personalized Care:</strong> Every consultation is unique to your needs</p>
+                            <div>
+                                <strong>Seamless Global & Local Access:</strong>
+                                <p>Consult online from home with secure medicine shipping, or walk in at our Vazhikulangara clinic.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="why-visual">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
-                    <p>Healing that honors your body's natural wisdom</p>
+                <div class="why-visual-card reveal-on-scroll reveal-delay-2">
+                    <img src="logo.png" alt="ELIXIR Logo" class="why-visual-logo">
+                    <p>“Healing that honors your body's innate wisdom, restoring natural equilibrium and vitality.”</p>
+                    <div class="doctor-badge">
+                        Dr. Megha M.G. • Chief Consultant
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Online Consultation -->
+    <!-- Online Consultation Highlight -->
     <section id="consultation">
         <div class="container">
-            <div class="consultation-highlight">
-                <h2>Online Consultation Available</h2>
-                <p>Get expert advice from home. Flexible scheduling, secure consultations, and convenient access to care whenever you need it.</p>
+            <div class="consultation-highlight reveal-on-scroll">
+                <h2>Online Consultation Available Worldwide</h2>
+                <p>Consult with Dr. Megha from the comfort of your living room. Experience confidential audio/video consultations and have your customized medicines delivered directly to your doorstep.</p>
                 
                 <div class="consultation-features">
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">💻</p>
-                        <p>Convenient</p>
+                    <div class="consultation-feature-card">
+                        <div class="feat-icon">📱</div>
+                        <p>Easy WhatsApp / Video Call</p>
                     </div>
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔒</p>
-                        <p>Safe & Secure</p>
+                    <div class="consultation-feature-card">
+                        <div class="feat-icon">🔒</div>
+                        <p>Strict Patient Confidentiality</p>
                     </div>
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏰</p>
-                        <p>Flexible Timing</p>
+                    <div class="consultation-feature-card">
+                        <div class="feat-icon">⏰</div>
+                        <p>Flexible Time Slot Booking</p>
                     </div>
+                    <div class="consultation-feature-card">
+                        <div class="feat-icon">📦</div>
+                        <p>Doorstep Express Courier</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20schedule%20an%20Online%20Consultation" target="_blank" class="cta-primary" style="background: white; color: var(--primary-green);">
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Schedule Online Consultation Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-subtitle">Got Questions?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find clear, straightforward answers about homoeopathic treatment, medicine safety, and consulting with our clinic.</p>
+            </div>
+
+            <div class="faq-accordion reveal-on-scroll">
+                <div class="faq-item active">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Are homoeopathic medicines safe for children and pregnant women?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! Homoeopathic remedies are prepared through safe, regulated serial dilutions that eliminate toxicity. They have no harmful chemicals, do not damage internal organs, and are completely safe for infants, pregnant mothers, and elderly patients.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How does the Online Consultation process work?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>It's very easy: (1) Message us on WhatsApp or call (+91 87140 55501). (2) We fix a mutually convenient time slot for a detailed video or phone call. (3) Dr. Megha takes your complete case history and prescribes the constitutional remedy. (4) Medicines are safely dispatched to your address via courier.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does it take to see results?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Contrary to the myth that homoeopathy is always slow, acute conditions (fever, cough, indigestion, allergic flares) often show noticeable improvement within hours. Long-standing chronic conditions (such as psoriasis, arthritis, or PCOD) improve progressively within 2 to 4 weeks as the root cause is resolved.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I take homoeopathic medicine alongside my existing allopathic prescriptions?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Homoeopathic medicines do not chemically interact with or counteract allopathic medications like blood pressure, thyroid, or diabetes tablets. We simply advise maintaining a 20-30 minute interval between medications.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Where is the clinic located and what are the visit hours?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We are situated at Kochery Building, Vazhikulangara - Anachaal Rd, Opposite to Auto Stand, Vazhikulangara, Kerala 683513. We are open 7 days a week for in-person consultations and appointments. You can click "Open in Google Maps" below for direct navigation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinic Location Section -->
+    <section id="location">
+        <div class="container">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-subtitle">In-Person Care</span>
+                <h2>Visit Our Clinic</h2>
+                <p>We warmly welcome patients for in-clinic appointments. Conveniently located with convenient road access and parking in Vazhikulangara.</p>
+            </div>
+            
+            <div class="clinic-location-banner reveal-on-scroll">
+                <div class="location-info">
+                    <h3>ELIXIR HOMOEOPATHIC CLINIC</h3>
+                    <p class="location-address">
+                        📍 <strong>Kochery Building</strong><br>
+                        Vazhikulangara - Anachaal Rd,<br>
+                        Opposite to Auto Stand, Vazhikulangara,<br>
+                        Keralam 683513
+                    </p>
+                    <div class="location-cta-group">
+                        <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" rel="noopener noreferrer" class="cta-primary">
+                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            Open in Google Maps
+                        </a>
+                        <a href="tel:+918714055501" class="cta-secondary">
+                            Call for Directions
+                        </a>
+                    </div>
+                </div>
+                <div class="location-map-visual">
+                    <div class="map-icon-large">📍</div>
+                    <h4 style="color: var(--primary-green); margin-bottom: 0.5rem; font-family: 'Georgia', serif;">Turn-by-Turn GPS Route</h4>
+                    <p style="font-size: 0.95rem; color: var(--light-text); max-width: 270px; margin-bottom: 1.4rem;">
+                        Click below to open GPS coordinates directly in your Google Maps application.
+                    </p>
+                    <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" rel="noopener noreferrer" class="contact-btn btn-maps" style="width: auto; padding: 0.75rem 1.8rem;">
+                        View Route on Maps →
+                    </a>
                 </div>
             </div>
         </div>
@@ -592,32 +2083,136 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <div class="contact-section">
-                <h2>Get Started Today</h2>
-                <p>Ready to begin your journey to better health? Reach out to us and schedule your consultation.</p>
-                
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <h3>WhatsApp</h3>
-                        <p>📱</p>
-                        <a href="https://wa.me/918714055501">+91 87140 55501</a>
+            <div class="section-header reveal-on-scroll">
+                <span class="section-subtitle">Reach Out Today</span>
+                <h2>Connect with Dr. Megha & Our Team</h2>
+                <p>Have questions, need guidance, or ready to book your consultation? Reach out across WhatsApp, phone call, email, or Instagram.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- WhatsApp -->
+                <div class="contact-card reveal-on-scroll">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-wa">💬</div>
+                            <div>
+                                <h3>WhatsApp</h3>
+                                <p class="sub-label">Instant Chat & Scheduling</p>
+                            </div>
+                        </div>
+                        <p class="contact-value"><strong>+91 87140 55501</strong></p>
                     </div>
-                    <div class="contact-card">
-                        <h3>Phone</h3>
-                        <p>☎️</p>
-                        <a href="tel:+918714055501">+91 87140 55501</a>
-                    </div>
-                    <div class="contact-card">
-                        <h3>Service</h3>
-                        <p>Online Consultation</p>
-                        <p style="color: var(--light-text); font-weight: 400;">Available 7 days a week</p>
-                    </div>
+                    <a href="https://wa.me/918714055501" target="_blank" rel="noopener noreferrer" class="contact-btn btn-wa">
+                        Chat on WhatsApp
+                    </a>
                 </div>
 
-                <div style="margin-top: 3rem; padding: 2rem; background: var(--warm-cream); border-radius: 8px;">
-                    <h3>Why wait?</h3>
-                    <p style="margin-bottom: 1.5rem;">Your first step toward natural healing is just one message away. We're here to listen and help you feel better.</p>
-                    <a href="https://wa.me/918714055501" class="cta-primary">Book Your Consultation</a>
+                <!-- Phone Call -->
+                <div class="contact-card reveal-on-scroll reveal-delay-1">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-phone">📞</div>
+                            <div>
+                                <h3>Phone Call</h3>
+                                <p class="sub-label">Direct Consultation Desk</p>
+                            </div>
+                        </div>
+                        <p class="contact-value"><strong>+91 87140 55501</strong></p>
+                    </div>
+                    <a href="tel:+918714055501" class="contact-btn btn-phone">
+                        Call Doctor Now
+                    </a>
+                </div>
+
+                <!-- Gmail / Email -->
+                <div class="contact-card reveal-on-scroll reveal-delay-2">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-mail">✉️</div>
+                            <div>
+                                <h3>Email / Gmail</h3>
+                                <p class="sub-label">Reports & Case Inquiries</p>
+                            </div>
+                        </div>
+                        <p class="contact-value" style="word-break: break-all; font-size: 0.92rem;">
+                            <strong>drmeghayadeesh2024@gmail.com</strong>
+                        </p>
+                    </div>
+                    <a href="mailto:drmeghayadeesh2024@gmail.com" class="contact-btn btn-mail">
+                        Send Email
+                    </a>
+                </div>
+
+                <!-- Instagram -->
+                <div class="contact-card reveal-on-scroll">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-insta">📸</div>
+                            <div>
+                                <h3>Instagram</h3>
+                                <p class="sub-label">Health Tips & Updates</p>
+                            </div>
+                        </div>
+                        <p class="contact-value">
+                            <strong>@dr_megha_mg</strong>
+                        </p>
+                    </div>
+                    <a href="https://www.instagram.com/dr_megha_mg?stkn=MTdrZmluMTA0NHhhMQ==" target="_blank" rel="noopener noreferrer" class="contact-btn btn-insta">
+                        Follow on Instagram
+                    </a>
+                </div>
+
+                <!-- Clinic Location Card -->
+                <div class="contact-card reveal-on-scroll reveal-delay-1">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-maps">📍</div>
+                            <div>
+                                <h3>Clinic Location</h3>
+                                <p class="sub-label">Google Maps Directions</p>
+                            </div>
+                        </div>
+                        <p class="contact-value" style="font-size: 0.88rem;">
+                            Kochery Building, Vazhikulangara, Kerala 683513
+                        </p>
+                    </div>
+                    <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" rel="noopener noreferrer" class="contact-btn btn-maps">
+                        Open in Google Maps
+                    </a>
+                </div>
+
+                <!-- Service Hours -->
+                <div class="contact-card reveal-on-scroll reveal-delay-2">
+                    <div>
+                        <div class="contact-card-top">
+                            <div class="contact-icon-box icon-time">⏰</div>
+                            <div>
+                                <h3>Service Hours</h3>
+                                <p class="sub-label">Online & In-Clinic</p>
+                            </div>
+                        </div>
+                        <p class="contact-value" style="font-size: 0.92rem;">
+                            <strong>Available 7 Days a Week</strong><br>
+                            Morning & Evening Slots
+                        </p>
+                    </div>
+                    <button onclick="openChatWithQuery('What are the consultation hours and doctor availability?')" class="contact-btn" style="background: var(--warm-cream); color: var(--primary-green); border: 1px solid var(--border-light); cursor: pointer;">
+                        Ask Help Desk Chatbot
+                    </button>
+                </div>
+            </div>
+
+            <!-- Appointment Box -->
+            <div class="appointment-box reveal-on-scroll">
+                <h3>Ready to Begin Your Healing Journey?</h3>
+                <p>Your first step toward gentle, permanent natural healing is just one message away. Reach out to Dr. Megha for personalized consultation and care.</p>
+                <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+                    <a href="https://wa.me/918714055501" target="_blank" rel="noopener noreferrer" class="cta-primary">
+                        💬 Book via WhatsApp
+                    </a>
+                    <a href="mailto:drmeghayadeesh2024@gmail.com" class="cta-secondary">
+                        ✉️ Email Dr. Megha
+                    </a>
                 </div>
             </div>
         </div>
@@ -626,10 +2221,340 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p><strong>ELIXIR Homeopathic Clinic</strong></p>
-            <p>Natural Healing • Better Tomorrow</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2024 ELIXIR Homeopathic Clinic. All rights reserved.</p>
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand-wrap">
+                        <img src="logo.png" alt="ELIXIR Logo" class="footer-logo">
+                        <span class="footer-brand-title">ELIXIR HOMOEOPATHIC CLINIC</span>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8;">
+                        Dedicated to personalized, root-cause healing through authentic homoeopathic care. Serving patients locally at Vazhikulangara and worldwide via secure online consultations.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Direct Contact</h4>
+                    <ul>
+                        <li><a href="tel:+918714055501">📞 +91 87140 55501</a></li>
+                        <li><a href="https://wa.me/918714055501" target="_blank" rel="noopener noreferrer">💬 WhatsApp: +91 87140 55501</a></li>
+                        <li><a href="mailto:drmeghayadeesh2024@gmail.com">✉️ drmeghayadeesh2024@gmail.com</a></li>
+                        <li><a href="https://www.instagram.com/dr_megha_mg?stkn=MTdrZmluMTA0NHhhMQ==" target="_blank" rel="noopener noreferrer">📸 Instagram: @dr_megha_mg</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Clinic Address</h4>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.85rem;">
+                        📍 Kochery Building, Vazhikulangara - Anachaal Rd, opposite to auto stand, Vazhikulangara, Keralam 683513
+                    </p>
+                    <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" rel="noopener noreferrer" style="color: var(--accent-sage); font-weight: 600; text-decoration: underline;">
+                        Open Google Maps Direction →
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 ELIXIR HOMOEOPATHIC CLINIC. All rights reserved. Natural Healing • Better Tomorrow.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- ========================================================
+         INTERACTIVE HELP DESK CHATBOT WIDGET
+         ======================================================== -->
+    <div class="chatbot-container" id="chatbotWidget">
+        
+        <!-- Welcome Teaser Speech Bubble -->
+        <div class="chatbot-teaser" id="chatTeaser" onclick="toggleChatbot()">
+            <button class="chatbot-teaser-close" onclick="event.stopPropagation(); dismissTeaser()">✕</button>
+            <strong>👋 Hello from ELIXIR Clinic!</strong>
+            Need help or have questions about treatment or booking? Ask our Help Desk.
+        </div>
+
+        <!-- Floating Launcher Toggle Button -->
+        <button class="chatbot-launcher" id="chatLauncher" onclick="toggleChatbot()" title="Open ELIXIR Help Desk">
+            <span class="chatbot-launcher-icon" id="launcherIcon">💬</span>
+            <span class="chatbot-badge" id="chatBadge">1</span>
+        </button>
+
+        <!-- Chat Window Card -->
+        <div class="chatbot-box" id="chatBox">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">
+                        <img src="logo.png" alt="Logo">
+                    </div>
+                    <div>
+                        <div class="chatbot-title">ELIXIR Help Desk</div>
+                        <div class="chatbot-status">
+                            <span class="status-dot"></span> Online • Dr. Megha's Clinic
+                        </div>
+                    </div>
+                </div>
+                <button class="chatbot-close-btn" onclick="toggleChatbot()" title="Close chat">✕</button>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chatbot-messages" id="chatMessages">
+                <!-- Bot Intro Message -->
+                <div class="chat-bubble bot">
+                    👋 <strong>Welcome to ELIXIR Homoeopathic Clinic!</strong><br><br>
+                    I am your 24/7 Virtual Help Desk Assistant. How can I assist you today?
+                    <span class="chat-time" id="introTime">Just now</span>
+                </div>
+            </div>
+
+            <!-- Typing indicator (hidden by default) -->
+            <div class="typing-indicator" id="chatTyping" style="display: none; margin: 0 1.1rem 0.5rem 1.1rem;">
+                <span></span><span></span><span></span>
+            </div>
+
+            <!-- Quick Action Chips -->
+            <div class="chatbot-quick-actions" id="chatQuickActions">
+                <button class="quick-chip" onclick="handleQuickChip('📅 Book an Appointment')">📅 Book Appointment</button>
+                <button class="quick-chip" onclick="handleQuickChip('📍 Clinic Location & Route')">📍 Clinic Location</button>
+                <button class="quick-chip" onclick="handleQuickChip('⏰ Consultation Timings')">⏰ Timings & Days</button>
+                <button class="quick-chip" onclick="handleQuickChip('🌿 Homeopathic Treatments')">🌿 Treatments</button>
+                <button class="quick-chip" onclick="handleQuickChip('💊 Online Consultation')">💊 Online Consult</button>
+                <button class="quick-chip" onclick="handleQuickChip('✉️ Email Clinic')">✉️ Email Doctor</button>
+                <button class="quick-chip" onclick="handleQuickChip('📸 Instagram Profile')">📸 Instagram</button>
+            </div>
+
+            <!-- Message Input Area -->
+            <form class="chatbot-input-area" id="chatForm" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="chatInput" class="chatbot-input" placeholder="Type your health question..." autocomplete="off">
+                <button type="submit" class="chatbot-send-btn" title="Send message">
+                    <svg style="width: 18px; height: 18px; fill: white;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         PAGE SCRIPTS: SCROLL ANIMATIONS, TABS, FAQ, & CHATBOT
+         ======================================================== -->
+    <script>
+        // 1. Scroll-triggered animations via IntersectionObserver
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            reveals.forEach(el => observer.observe(el));
+
+            // Navbar shrink on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Set current time on intro message
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const introTime = document.getElementById('introTime');
+            if (introTime) introTime.textContent = timeStr;
+        });
+
+        // 2. Treatment Categorized Tabs Switcher
+        function switchTreatmentTab(tabId, btn) {
+            const allBtns = document.querySelectorAll('.tab-btn');
+            allBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const panels = document.querySelectorAll('.tab-content-panel');
+            panels.forEach(p => p.classList.remove('active'));
+
+            const activePanel = document.getElementById('tab-' + tabId);
+            if (activePanel) {
+                activePanel.classList.add('active');
+                // Re-trigger scroll animations within active tab
+                const tabReveals = activePanel.querySelectorAll('.reveal-on-scroll');
+                tabReveals.forEach(el => el.classList.add('is-visible'));
+            }
+        }
+
+        // 3. FAQ Accordion Toggle
+        function toggleFaq(headerElement) {
+            const item = headerElement.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Optionally close other items for clean single accordion
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+            
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // 4. Help Desk Chatbot Logic
+        let chatOpen = false;
+
+        function toggleChatbot() {
+            chatOpen = !chatOpen;
+            const chatBox = document.getElementById('chatBox');
+            const launcherIcon = document.getElementById('launcherIcon');
+            const chatBadge = document.getElementById('chatBadge');
+            const teaser = document.getElementById('chatTeaser');
+
+            if (chatOpen) {
+                chatBox.classList.add('open');
+                launcherIcon.textContent = '✕';
+                if (chatBadge) chatBadge.style.display = 'none';
+                if (teaser) teaser.style.display = 'none';
+                document.getElementById('chatInput').focus();
+            } else {
+                chatBox.classList.remove('open');
+                launcherIcon.textContent = '💬';
+            }
+        }
+
+        function dismissTeaser() {
+            const teaser = document.getElementById('chatTeaser');
+            if (teaser) teaser.style.display = 'none';
+        }
+
+        function openChatWithQuery(queryText) {
+            if (!chatOpen) toggleChatbot();
+            handleQuickChip(queryText);
+        }
+
+        function handleQuickChip(text) {
+            addChatMessage(text, 'user');
+            generateBotResponse(text);
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addChatMessage(text, 'user');
+            input.value = '';
+            generateBotResponse(text);
+        }
+
+        function addChatMessage(text, sender, isHtml = false) {
+            const container = document.getElementById('chatMessages');
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble ${sender}`;
+
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            if (isHtml) {
+                bubble.innerHTML = `${text}<span class="chat-time">${timeStr}</span>`;
+            } else {
+                bubble.textContent = text;
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'chat-time';
+                timeSpan.textContent = timeStr;
+                bubble.appendChild(timeSpan);
+            }
+
+            container.appendChild(bubble);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function generateBotResponse(userMsg) {
+            const typing = document.getElementById('chatTyping');
+            typing.style.display = 'flex';
+            const container = document.getElementById('chatMessages');
+            container.scrollTop = container.scrollHeight;
+
+            const q = userMsg.toLowerCase();
+
+            setTimeout(() => {
+                typing.style.display = 'none';
+
+                let reply = "";
+
+                if (q.includes('book') || q.includes('appointment') || q.includes('consult') || q.includes('schedule')) {
+                    reply = `📅 <strong>Schedule an Appointment:</strong><br>
+                    You can book a consultation directly with <strong>Dr. Megha M.G.</strong> for either an in-clinic visit or an online video consultation.<br><br>
+                    <div class="chat-action-btn-row">
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="chat-btn-link" style="background: #25D366;">
+                            💬 Instant WhatsApp Booking
+                        </a>
+                        <a href="tel:+918714055501" class="chat-btn-link" style="background: var(--primary-green);">
+                            📞 Call +91 87140 55501
+                        </a>
+                    </div>`;
+                }
+                else if (q.includes('locat') || q.includes('where') || q.includes('address') || q.includes('map') || q.includes('place') || q.includes('reach') || q.includes('vazhikulangara')) {
+                    reply = `📍 <strong>Clinic Location:</strong><br>
+                    <strong>ELIXIR HOMOEOPATHIC CLINIC</strong><br>
+                    Kochery Building, Vazhikulangara - Anachaal Rd, opposite to auto stand, Vazhikulangara, Keralam 683513.<br><br>
+                    <div class="chat-action-btn-row">
+                        <a href="https://maps.app.goo.gl/Gu2ztNEFJ7z7QE6J8?g_st=ac" target="_blank" class="chat-btn-link" style="background: #1A73E8;">
+                            🗺️ Open in Google Maps
+                        </a>
+                    </div>`;
+                }
+                else if (q.includes('time') || q.includes('hour') || q.includes('open') || q.includes('sunday') || q.includes('day')) {
+                    reply = `⏰ <strong>Clinic Hours & Availability:</strong><br>
+                    • We are open <strong>7 Days a week</strong> for appointments.<br>
+                    • Both morning and evening consultation slots are available.<br>
+                    • For walk-ins or specific timings, please send a quick WhatsApp message to verify the current doctor schedule.`;
+                }
+                else if (q.includes('online') || q.includes('video') || q.includes('courier') || q.includes('delivery')) {
+                    reply = `💊 <strong>Online Consultation & Medicine Delivery:</strong><br>
+                    • Dr. Megha provides detailed video/audio consultations for patients across Kerala, India, and abroad.<br>
+                    • Genuine homoeopathic medicines are safely packaged and couriered straight to your home address.`;
+                }
+                else if (q.includes('mail') || q.includes('gmail') || q.includes('email')) {
+                    reply = `✉️ <strong>Email Dr. Megha:</strong><br>
+                    For detailed health history or lab report reviews, you can email us directly at:<br>
+                    <strong>drmeghayadeesh2024@gmail.com</strong><br><br>
+                    <div class="chat-action-btn-row">
+                        <a href="mailto:drmeghayadeesh2024@gmail.com" class="chat-btn-link" style="background: #EA4335;">
+                            ✉️ Compose Email Now
+                        </a>
+                    </div>`;
+                }
+                else if (q.includes('insta') || q.includes('instagram') || q.includes('social')) {
+                    reply = `📸 <strong>Instagram Profile:</strong><br>
+                    Follow Dr. Megha on Instagram for daily natural health tips, case studies, and homoeopathic insights at <strong>@dr_megha_mg</strong>.<br><br>
+                    <div class="chat-action-btn-row">
+                        <a href="https://www.instagram.com/dr_megha_mg?stkn=MTdrZmluMTA0NHhhMQ==" target="_blank" class="chat-btn-link" style="background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);">
+                            📸 Visit @dr_megha_mg
+                        </a>
+                    </div>`;
+                }
+                else if (q.includes('skin') || q.includes('acne') || q.includes('psoriasis') || q.includes('hair') || q.includes('alopecia') || q.includes('pcod') || q.includes('asthma') || q.includes('treatment')) {
+                    reply = `🌿 <strong>Homoeopathic Treatment Approach:</strong><br>
+                    At ELIXIR, we treat both chronic and acute conditions including Skin (Psoriasis, Eczema, Acne), Hair fall, PCOD, Asthma, Allergies, Thyroid, and Child Health without harsh steroids or side effects.<br><br>
+                    Would you like to speak to Dr. Megha about your symptoms?`;
+                }
+                else if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('namaste')) {
+                    reply = `Hello! 😊 Welcome to ELIXIR HOMOEOPATHIC CLINIC. How can I help you today? You can ask about our treatments, booking an appointment, our location, or doctor timings!`;
+                }
+                else {
+                    reply = `Thank you for your question! Dr. Megha and our clinic team are happy to answer any health query personally.<br><br>
+                    You can message us right away on WhatsApp or call our clinic line:<br><br>
+                    <div class="chat-action-btn-row">
+                        <a href="https://wa.me/918714055501?text=Hello%20Dr.%20Megha,%20I%20have%20an%20inquiry%20regarding%20treatment" target="_blank" class="chat-btn-link" style="background: #25D366;">
+                            💬 Chat on WhatsApp (+91 87140 55501)
+                        </a>
+                    </div>`;
+                }
+
+                addChatMessage(reply, 'bot', true);
+            }, 450);
+        }
+    </script>
 </body>
 </html>
